@@ -29,19 +29,56 @@
   <h1 data-ng-show="products.length === 0"> No Products Yet. </h1>
   <h1 data-ng-show="global.isAdmin === true && products.length === 0"> <br> Why don't you <a href="/#!/products/create">Create One</a>?</h1>
 </section> -->
-
+<div data-ng-controller="ProductsController">
   <div class="Breadcrumb"><a href="#">Home</a> > <a href="#">Flower vase</a> > Glass Vase</div>
   <div class="listpage-left">
+    <!-- <form name="productFilterForm" role="form" data-ng-submit="includeCategory()"> -->
     <div class="lpage-mainhead">Filter by</div>
     <div class="lpage-head">Categories</div>
-    <div class="lpage-content">
-      <input type="checkbox" name="glass" value="vase"> Glass vase<br>
-      <input type="checkbox" name="glass" value="metal"> Glass and Metal vase<br>
-      <input type="checkbox" name="glass" value="vase"> For Dry Flowers<br>
-      <input type="checkbox" name="glass" value="metal"> Glass vase<br>
-      <input type="checkbox" name="glass" value="vase"> For Dry Flowers<br>
-      <input type="checkbox" name="glass" value="metal"> Glass vase<br>
-    </div>
+    <div class="lpage-content" data-ng-init="findProductCategory()">
+      <ul style="list-style-type:none">
+        <li data-ng-repeat="category in productCategory">
+
+    <!-- <div class="action-checkbox"> -->
+       <input id="{{category.name}}" type="checkbox" value="{{category._id}}" ng-checked="selection.indexOf(category._id) > -1" ng-click="toggleSelection(category._id)" />
+       <label for="{{category.name}}"></label>
+       {{category.name}}
+    <!--  -->
+
+        <!-- <li> -->
+          
+          <!-- <input type="checkbox" ng-selected="includeCategory(categoryName.name)"/>{{categoryName.name}}</br/> -->
+          <!-- <input type="checkbox" ng-model="(productFilterForm.categoryName.name)"  ng-true-value='(categoryName.name)' ng-false-value=""/>{{categoryName.name}}</br/> -->
+
+          <!-- <input type="checkbox" name="{{categoryName.name}}" data-ng-click="includeCategory()" ng-model="categoryName.name" ng-true-value="'Carpets'" ng-false-value="'undefined'"/>{{categoryName.name}}</br/> -->
+
+          <!-- <input type="checkbox" name="Carpets" data-ng-click="includeCategory()" ng-model="Carpets" ng-true-value="'Carpets'" ng-false-value="'undefined'"/>Carpets</br/>
+
+          <input type="checkbox" name="DecorativeItems" data-ng-click="includeCategory()" ng-model="DecorativeItems" ng-true-value="'DecorativeItems'" ng-false-value="'undefined'"/>Decorative Items</br/>
+
+          <input type="checkbox" name="Furniture" data-ng-click="includeCategory()" ng-model="Furniture" ng-true-value="'Furniture'" ng-false-value="'undefined'"/>Furniture</br/>
+
+          <input type="checkbox" name="Gardenware" data-ng-click="includeCategory()" ng-model="Gardenware" ng-true-value="'Gardenware'" ng-false-value="'undefined'"/>Gardenware</br/>
+
+          <input type="checkbox" name="Gifts and Souvenir article" data-ng-click="includeCategory()" ng-model="GiftsandSouvenirarticle" ng-true-value="'Gifts and Souvenir article'" ng-false-value="'undefined'"/>Gifts and Souvenir article</br/>
+
+          <input type="checkbox" name="Houseware" data-ng-click="includeCategory()" ng-model="Houseware" ng-true-value="'Houseware'" ng-false-value="'undefined'"/>Houseware</br/>
+
+          <input type="checkbox" name="Kitchenware" data-ng-click="includeCategory()" ng-model="Kitchenware" ng-true-value="'Kitchenware'" ng-false-value="'undefined'"/>Kitchenware</br/>
+
+          <input type="checkbox" name="Tableware" data-ng-click="includeCategory()" ng-model="Tableware" ng-true-value="'Tableware'" ng-false-value="'undefined'"/>Tableware</br/>
+
+          <input type="checkbox" name="Toys" data-ng-click="includeCategory()" ng-model="Toys" ng-true-value="'Toys'" ng-false-value="'undefined'"/>Toys</br/>
+
+          <input type="checkbox" name="Wall decor" data-ng-click="includeCategory()" ng-model="Walldecor" ng-true-value="'Wall decor'" ng-false-value="'undefined'"/>Wall decor</br/> -->
+
+          
+        </li>
+        <div class="input-sty">
+       <button type="submit">Search</button>
+      </div>
+      </ul>
+     </div>
 
     <div class="lpage-head">Colour</div>
     <div class="lpage-content">
@@ -62,7 +99,7 @@
     </div>
 
     <div class="lpage-head">brands</div>
-    <div class="lpage-content lpage-last">
+    <div class="lpage-content lpage-last" >
       <input type="checkbox" name="glass" value="vase"> Brand1<br>
       <input type="checkbox" name="glass" value="metal"> Brand2<br>
       <input type="checkbox" name="glass" value="vase">  Brand3<br>
@@ -70,9 +107,10 @@
       <input type="checkbox" name="glass" value="vase">  Brand5<br>
       <input type="checkbox" name="glass" value="metal">  Brand6<br>
     </div>
+  <!-- </form> -->
   </div><!--list page left-->
 
-  <div class="listpage-right" data-ng-controller="ProductsController" data-ng-init="find()">
+  <div class="listpage-right"  data-ng-init="find()">
     <div class="category-name">All Products <span class="pro-found">({{products.length}} Items found) </span>
       </div>
       <div class="sort-by">
@@ -81,7 +119,7 @@
             <h1 data-ng-show="products.length === 0"> No Products Yet. </h1>
              <h1 data-ng-show="global.isAdmin === true && products.length === 0"> <br> Why don't you <a href="/#!/products/create">Create One</a>?</h1>
       <div class="row" data-ng-repeat="product in products" ng-if="$index % 3 == 0">
-        <div class=" col-md-4 " ng-repeat="product in products.slice($index, $index+3)" >
+        <div class=" col-md-4 " ng-repeat="product in products.slice($index, $index+3) " >
           <div class="thumbnail" >
             <span data-ng-if="hasAuthorization(product)">
               <a class="btn" href="/#!/products/{{product._id}}/edit">
@@ -109,3 +147,4 @@
       </div>
     </div>
   </div><!--list page right-->
+</div>

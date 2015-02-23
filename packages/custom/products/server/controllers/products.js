@@ -13,7 +13,8 @@ var mongoose = require('mongoose'),
  * Find product by id
  */
 exports.product = function(req, res, next, id) {
-  Product.load(id, function(err, product) {
+  
+   Product.load(id, function(err, product) {
     if (err) return next(err);
     if (!product) return next(new Error('Failed to load product ' + id));
     req.product = product;
@@ -87,7 +88,10 @@ exports.show = function(req, res) {
  * List of Products
  */
 exports.all = function(req, res) {
-Product.find().sort('-created').populate('user', 'name username').populate('category', 'name ').exec(function(err, products) {
+ // var selection =req.selection;
+  var selection = req.query ;
+  
+Product.find(selection).sort('-created').populate('user', 'name username').populate('category', 'name ').exec(function(err, products) {
 
 if (err) {
 return res.json(500, {

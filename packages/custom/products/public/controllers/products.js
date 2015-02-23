@@ -4,8 +4,12 @@ angular.module('mean.products').controller('ProductsController', ['$scope', '$ro
   function($scope, $rootScope, $stateParams, $location, Global, Products, ProductCategoryLists, CategorizedProducts) {
     $scope.global = Global;
     $scope.images = [];
+    $scope.selection = [];    
+    $scope.products = null;
     $scope.productImages = null;
+    $scope.productCategory = null;
     $scope.quantity = 1;
+    $scope.categoryIncludes = null;
    
     $scope.hasAuthorization = function(product) {
       if (!product || !product.user) return false;
@@ -102,20 +106,45 @@ angular.module('mean.products').controller('ProductsController', ['$scope', '$ro
       }
     };
 
+   
     $scope.find = function() {
-      Products.query(function(products) {
-        $scope.products = products;
-      });
+
+          if($scope.selection.length > 0){
+            Products.query({
+        selection:$scope.selection
+      },function(products) {
+            $scope.products = products;
+            });
+        }else{
+            //console.log($scope.selection);
+            Products.query(function(products) {
+            $scope.products = products;
+            });
+          }
     };
 
     $scope.findProductCategory = function() {
       $scope.defaultCategory = '54634e05a92d436556ae189a' ;
       ProductCategoryLists.query(function(productCategory) {
         $scope.productCategory = productCategory;
-
       });
     };
 
+
+      $scope.toggleSelection = function toggleSelection(categoryId) {
+          var idx = $scope.selection.indexOf(categoryId);
+           // is currently selected
+           if (idx > -1) {
+           $scope.selection.splice(idx, 1);
+            $scope.find();
+           }
+           // is newly selected
+           else {
+           $scope.selection.push(categoryId);
+            $scope.find();
+           }
+       };
+       
     $scope.findOne = function() {
       Products.get({
         productId: $stateParams.productId
