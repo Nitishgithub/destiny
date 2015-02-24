@@ -88,9 +88,16 @@ exports.show = function(req, res) {
  * List of Products
  */
 exports.all = function(req, res) {
- // var selection =req.selection;
-  var selection = req.query ;
-  
+
+console.log(req.query.selection); 
+var selection = req.query.selection;
+console.log(selection);
+//if (!Array.isArray(defaultMenu)) defaultMenu = [defaultMenu];
+console.log(Array.isArray(selection));
+selection = [selection];
+console.log(Array.isArray(selection));
+console.log(selection.length);
+
 Product.find(selection).sort('-created').populate('user', 'name username').populate('category', 'name ').exec(function(err, products) {
 
 if (err) {
