@@ -8,11 +8,11 @@ angular.module('mean.system').controller('IndexController', ['$scope', 'Global',
 
     	var categoryList;
     	ConfigService.query({name: 'cat_slider'},function(configs) {
-        console.log('config..................');
-        console.log(configs);
+        /*console.log('config..................');
+        console.log(configs);*/
         categoryList = configs[0].value.categories;
-        console.log('category list..................');
-        console.log(categoryList);
+        /*console.log('category list..................');
+        console.log(categoryList);*/
         $scope.productsPerCategory = configs[0].value.products_quantity;
 
         var stringifiedCategoryList = angular.toJson(categoryList);

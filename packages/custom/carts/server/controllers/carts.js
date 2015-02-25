@@ -31,10 +31,10 @@ exports.showCart = function(req, res) {
  */
 exports.updateCart = function(req, res) {
   var cart = req.cart;
-  console.log(req.cart);
-  console.log(req.body);
+  //console.log(req.cart);
+  //console.log(req.body);
   cart = _.extend(cart, req.body);
-  console.log(cart);
+  //console.log(cart);
   cart.save(function(err) {
     if (err) {
       return res.json(500, {
@@ -72,8 +72,8 @@ exports.createCart = function(req, res) {
  */
 exports.destroy = function(req, res) {
   var cart = req.cart;
-console.log('destroy.................');
-console.log(req.cart);
+//console.log('destroy.................');
+//console.log(req.cart);
   cart.remove(function(err) {
     if (err) {
       return res.json(500, {

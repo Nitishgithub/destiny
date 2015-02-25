@@ -110,8 +110,10 @@ angular.module('mean.products').controller('ProductsController', ['$scope', '$ro
     $scope.find = function() {
 
           if($scope.selection.length > 0){
+
+            var stringified = angular.toJson($scope.selection);
             Products.query({
-        selection:$scope.selection
+        selection:stringified
       },function(products) {
             $scope.products = products;
             });
@@ -167,7 +169,7 @@ angular.module('mean.products').controller('ProductsController', ['$scope', '$ro
 
     $scope.uploadFileCallback = function(file) {
     $scope.errorMessages = [];
-       console.log('length images'+ $scope.images.length);
+      // console.log('length images'+ $scope.images.length);
 
 
       if ($scope.images.length === 0 && file.type.indexOf('image') !== -1) {
@@ -182,11 +184,11 @@ angular.module('mean.products').controller('ProductsController', ['$scope', '$ro
            //  $scope.images=[];
                   }
 
-   console.log('length images at exit'+ $scope.images.length);
+   //console.log('length images at exit'+ $scope.images.length);
     };
 
     $scope.uploadFinished = function(files) {
-      console.log(files);
+     // console.log(files);
     };
 
     $scope.findCategorizedProduct = function() {

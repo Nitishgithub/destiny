@@ -89,15 +89,24 @@ exports.show = function(req, res) {
  */
 exports.all = function(req, res) {
 
-console.log(req.query.selection); 
+/*console.log(req.query.selection); 
 var selection = req.query.selection;
 console.log(selection);
-//if (!Array.isArray(defaultMenu)) defaultMenu = [defaultMenu];
+if (!Array.isArray(defaultMenu)) defaultMenu = [defaultMenu];
 console.log(Array.isArray(selection));
 selection = [selection];
 console.log(Array.isArray(selection));
-console.log(selection.length);
+console.log(selection.length);*/
 
+//console.log(req.query.selection);
+var selection;
+  if(req.query.selection){
+    selection = {
+     category: { $in: JSON.parse(req.query.selection) }
+    };
+  }else{
+    selection = {};
+  }
 Product.find(selection).sort('-created').populate('user', 'name username').populate('category', 'name ').exec(function(err, products) {
 
 if (err) {
@@ -121,10 +130,8 @@ exports.productCategory = function(req, res) {
     json = {};
   }
 
-
-
-  console.log('json..........product category list');
-  console.log(json);
+  /*console.log('json..........product category list');
+  console.log(json);*/
 
   Productcategorylist.find(json).exec(function(err, productCategoryLists) {
 
