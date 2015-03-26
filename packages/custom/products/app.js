@@ -53,6 +53,8 @@ Products.register(function(app, auth, database) {
     });
     */
   Products.aggregateAsset('css', 'products.css');
-
+  Products.aggregateAsset('css', 'bower_components/angular-rangeslider/angular.rangeSlider.css');
+  Products.aggregateAsset('js', 'bower_components/angular-rangeslider/angular.rangeSlider.js');
+ 
   return Products;
 });

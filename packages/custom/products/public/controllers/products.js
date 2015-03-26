@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mean.products').controller('ProductsController', ['$scope', '$rootScope','$stateParams', '$location', 'Global', 'Products','ProductCategoryLists','CategorizedProducts',
+angular.module('mean.products',[]).controller('ProductsController', ['$scope', '$rootScope','$stateParams', '$location', 'Global', 'Products','ProductCategoryLists','CategorizedProducts',
   function($scope, $rootScope, $stateParams, $location, Global, Products, ProductCategoryLists, CategorizedProducts) {
     $scope.global = Global;
     $scope.images = [];
@@ -10,6 +10,15 @@ angular.module('mean.products').controller('ProductsController', ['$scope', '$ro
     $scope.productCategory = null;
     $scope.quantity = 1;
     $scope.categoryIncludes = null;
+
+    $scope.colorInspirationClasses = [
+    'grapefruit', 'bittersweet', 'sunflower', 'grass', 
+    'mint', 'aqua', 'bluejeans', 'lavender', 
+    'pinkrose', 'lightgray', 'mediumgray', 'darkgray'
+  ];
+
+   
+
    
     $scope.hasAuthorization = function(product) {
       if (!product || !product.user) return false;

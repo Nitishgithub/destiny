@@ -29,6 +29,15 @@
   <h1 data-ng-show="products.length === 0"> No Products Yet. </h1>
   <h1 data-ng-show="global.isAdmin === true && products.length === 0"> <br> Why don't you <a href="/#!/products/create">Create One</a>?</h1>
 </section> -->
+
+
+    
+<!-- <script src="bower_components/angular-rangeslider/angular.rangeSlider.js"></script>
+<link rel="stylesheet" href="bower_components/angular-rangeslider/angular.rangeSlider.css"> -->
+
+<link href="bower_components/ng-color-picker/color-picker.css" media="all" rel="stylesheet" type="text/css">
+<script src="bower_components/ng-color-picker/color-picker.js"></script>
+
 <div data-ng-controller="ProductsController">
   <div class="Breadcrumb"><a href="#">Home</a> > <a href="#">Flower vase</a> > Glass Vase</div>
   <div class="listpage-left">
@@ -39,64 +48,45 @@
       <ul style="list-style-type:none">
         <li data-ng-repeat="category in productCategory">
 
-    <!-- <div class="action-checkbox"> -->
+    
        <input id="{{category.name}}" type="checkbox" value="{{category._id}}" ng-checked="selection.indexOf(category._id) > -1" ng-click="toggleSelection(category._id)" />
        <label for="{{category.name}}"></label>
        {{category.name}}
-    <!--  -->
-
-        <!-- <li> -->
-          
-          <!-- <input type="checkbox" ng-selected="includeCategory(categoryName.name)"/>{{categoryName.name}}</br/> -->
-          <!-- <input type="checkbox" ng-model="(productFilterForm.categoryName.name)"  ng-true-value='(categoryName.name)' ng-false-value=""/>{{categoryName.name}}</br/> -->
-
-          <!-- <input type="checkbox" name="{{categoryName.name}}" data-ng-click="includeCategory()" ng-model="categoryName.name" ng-true-value="'Carpets'" ng-false-value="'undefined'"/>{{categoryName.name}}</br/> -->
-
-          <!-- <input type="checkbox" name="Carpets" data-ng-click="includeCategory()" ng-model="Carpets" ng-true-value="'Carpets'" ng-false-value="'undefined'"/>Carpets</br/>
-
-          <input type="checkbox" name="DecorativeItems" data-ng-click="includeCategory()" ng-model="DecorativeItems" ng-true-value="'DecorativeItems'" ng-false-value="'undefined'"/>Decorative Items</br/>
-
-          <input type="checkbox" name="Furniture" data-ng-click="includeCategory()" ng-model="Furniture" ng-true-value="'Furniture'" ng-false-value="'undefined'"/>Furniture</br/>
-
-          <input type="checkbox" name="Gardenware" data-ng-click="includeCategory()" ng-model="Gardenware" ng-true-value="'Gardenware'" ng-false-value="'undefined'"/>Gardenware</br/>
-
-          <input type="checkbox" name="Gifts and Souvenir article" data-ng-click="includeCategory()" ng-model="GiftsandSouvenirarticle" ng-true-value="'Gifts and Souvenir article'" ng-false-value="'undefined'"/>Gifts and Souvenir article</br/>
-
-          <input type="checkbox" name="Houseware" data-ng-click="includeCategory()" ng-model="Houseware" ng-true-value="'Houseware'" ng-false-value="'undefined'"/>Houseware</br/>
-
-          <input type="checkbox" name="Kitchenware" data-ng-click="includeCategory()" ng-model="Kitchenware" ng-true-value="'Kitchenware'" ng-false-value="'undefined'"/>Kitchenware</br/>
-
-          <input type="checkbox" name="Tableware" data-ng-click="includeCategory()" ng-model="Tableware" ng-true-value="'Tableware'" ng-false-value="'undefined'"/>Tableware</br/>
-
-          <input type="checkbox" name="Toys" data-ng-click="includeCategory()" ng-model="Toys" ng-true-value="'Toys'" ng-false-value="'undefined'"/>Toys</br/>
-
-          <input type="checkbox" name="Wall decor" data-ng-click="includeCategory()" ng-model="Walldecor" ng-true-value="'Wall decor'" ng-false-value="'undefined'"/>Wall decor</br/> -->
+    
+        
 
           
         </li>
-        <div class="input-sty">
-       <button type="submit">Search</button>
-      </div>
       </ul>
      </div>
 
     <div class="lpage-head">Colour</div>
     <div class="lpage-content">
-      <img src="/products/assets/img/colors.jpg" width="198" height="76" />
+      <!-- <img src="/products/assets/img/colors.jpg" width="198" height="76" />
+      <div range-slider min="0" max="100" model-min="min" model-max="max"></div> -->
+     <!--  <ng-color-picker selected='selected'></ng-color-picker> -->
+
+      <p>
+        <span ng-repeat="c in colorInspirationClasses" class="{{c}}"></span>
+      </p>
+
     </div>
 
     <div class="lpage-head">Price</div>
     <div class="lpage-content">
-      <img src="/products/assets/img/price-img.jpg" width="191" height="73" />
-    </div>
+      <!-- <img src="/products/assets/img/price-img.jpg" width="191" height="73" /> -->
+      <!-- <div range-slider min="0" max="100" model-min="min" model-max="max"></div>
+      <div range-slider min="minPrice" max="maxPrice" model-min="userMinPrice" model-max="userMaxPrice" step="5" filter="currency" filter-options="USD$"></div> -->
 
+      <div range-slider min="0" max="100" model-min="min" model-max="max"></div>
+</div>
     <div class="lpage-head">Discount</div>
     <div class="lpage-content">
       1% - 20%(144)<br />
       20% - 40%(48)<br />
       40% - 60%(77)<br />
       60% - 80%(45)<br />
-    </div>
+     </div>
 
     <div class="lpage-head">brands</div>
     <div class="lpage-content lpage-last" >

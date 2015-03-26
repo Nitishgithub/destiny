@@ -28,6 +28,7 @@ angular.module('mean.products').config(['$stateProvider',
       .state('all products', {
         url: '/products',
         templateUrl: 'products/views/list.html'
+        /*templateUrl: 'bower_components/angular-rangeslider/demo/test.html'*/
       })
       .state('create product', {
         url: '/products/create',
